@@ -88,9 +88,9 @@ declare module 'web3' {
         }
 
         interface SolidityEvent<A> {
-            event: string
-            address: string
-            args: A
+            event: string;
+            address: string;
+            args: A;
         }
 
         interface FilterResult {
