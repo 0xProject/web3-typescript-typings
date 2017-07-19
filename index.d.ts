@@ -128,8 +128,8 @@ declare module 'web3' {
         interface TransactionReceipt {
             blockHash: string;
             blockNumber: number;
-            transactionhash: string;
-            transactionindex: string;
+            transactionHash: string;
+            transactionIndex: string;
             from: string;
             to: string;
             cumulativeGasUsed: string;
