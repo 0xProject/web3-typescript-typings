@@ -30,7 +30,10 @@ declare module 'web3' {
             filter(value: string|Web3.FilterObject): Web3.FilterResult;
             getAccounts(callback: (err: Error, value: any) => void): string[];
             sendTransaction(txData: any, callback: (err: Error, value: any) => void): void;
-            getTransactionReceipt(txHash: string, callback: (err: Error, receipt: any) => void): void;
+            getTransaction(txHash: string, callback?: (err: Error, tx: Web3.Transaction) => void): Web3.Transaction;
+            getTransactionFromBlock(hashStringOrNumber: string|number, indexNumber: number, callback?: (err: Error, tx: Web3.Transaction) => void): Web3.Transaction;
+            getTransactionReceipt(txHash: string, callback?: (err: Error, receipt: Web3.TransactionReceipt) => void): Web3.TransactionReceipt;
+            getTransactionCount(address: string, defaultBlock?: number|string, callback?: (err: Error, count: number) => void): number;
         };
 
         public setProvider(provider: Web3.Provider): void;
@@ -106,6 +109,33 @@ declare module 'web3' {
 
         interface Sha3Options {
             encoding: string;
+        }
+
+        interface Transaction {
+            hash: string;
+            nonce: number;
+            blockHash: string;
+            blockNumber: number;
+            transactionIndex: number;
+            from: string;
+            to: string;
+            value: BigNumber.BigNumber;
+            gasPrice: BigNumber.BigNumber;
+            gas: number;
+            input: string;
+        }
+
+        interface TransactionReceipt {
+            blockHash: string;
+            blockNumber: number;
+            transactionhash: string;
+            transactionindex: string;
+            from: string;
+            to: string;
+            cumulativeGasUsed: string;
+            gasUsed: number;
+            contractAddress: string;
+            logs: any[];
         }
     }
     /* tslint:disable */
