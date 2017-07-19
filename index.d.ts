@@ -135,7 +135,18 @@ declare module 'web3' {
             cumulativeGasUsed: string;
             gasUsed: number;
             contractAddress: string;
-            logs: any[];
+            logs: LogEntry[];
+        }
+
+        interface LogEntry {
+            logIndex: number;
+            transactionIndex: number;
+            transactionHash: string;
+            blockHash: string;
+            blockNumber: number;
+            address: string;
+            data: string;
+            topics: string[];
         }
     }
     /* tslint:disable */
