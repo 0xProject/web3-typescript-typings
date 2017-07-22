@@ -114,11 +114,11 @@ declare module 'web3' {
         interface Transaction {
             hash: string;
             nonce: number;
-            blockHash: string;
-            blockNumber: number;
-            transactionIndex: number;
+            blockHash: string|null;
+            blockNumber: number|null;
+            transactionIndex: number|null;
             from: string;
-            to: string;
+            to: string|null;
             value: BigNumber.BigNumber;
             gasPrice: BigNumber.BigNumber;
             gas: number;
@@ -131,19 +131,19 @@ declare module 'web3' {
             transactionHash: string;
             transactionIndex: string;
             from: string;
-            to: string;
+            to: string|null;
             cumulativeGasUsed: string;
             gasUsed: number;
-            contractAddress: string;
+            contractAddress: string|null;
             logs: LogEntry[];
         }
 
         interface LogEntry {
-            logIndex: number;
+            logIndex: number|null;
             transactionIndex: number;
             transactionHash: string;
-            blockHash: string;
-            blockNumber: number;
+            blockHash: string|null;
+            blockNumber: number|null;
             address: string;
             data: string;
             topics: string[];
