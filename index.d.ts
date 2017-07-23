@@ -20,7 +20,8 @@ declare module 'web3' {
             };
             blockNumber: number;
             sign(address: string, message: string, callback: (err: Error, signData: string) => void): string;
-            getBlock(blockHash: string, callback: (err: Error, blockObj: any) => void): BigNumber.BigNumber;
+            getBlock(blockHashOrNumber: string|number, returnTransactionObjects?: boolean,
+                callback?: (err: Error, blockObj: Web3.Block) => void): Web3.Block;
             getBlockNumber(callback: (err: Error, blockNumber: number) => void): void;
             contract<A>(abi: Web3.ContractAbi): Web3.Contract<A>;
             getBalance(addressHexString: string,
@@ -109,6 +110,27 @@ declare module 'web3' {
 
         interface Sha3Options {
             encoding: string;
+        }
+
+        interface Block {
+            number: number|null;
+            hash: string|null;
+            parentHash: string;
+            nonce: string|null;
+            sha3Uncles: string;
+            logsBloom: string|null;
+            transactionRoot: string;
+            stateRoot: string;
+            miner: string;
+            difficulty: BigNumber.BigNumber;
+            totalDifficulty: BigNumber.BigNumber;
+            extraData: string;
+            size: number;
+            gasLimit: number;
+            gasUsed: number;
+            timestamp: number;
+            transactions: Transaction[]|string[];
+            uncles: string[];
         }
 
         interface Transaction {
