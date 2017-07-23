@@ -33,12 +33,28 @@ declare module 'web3' {
             getTransactionReceipt(txHash: string, callback: (err: Error, receipt: any) => void): void;
         };
 
+        public personal: {
+            listAccounts: string[];
+            newAccount(password: string): string;
+            unlockAccount(address: string, password: string, duration: number): boolean;
+            lockAccount(address: string): boolean;
+            sign(message: string, account: string, password: string): string;
+        }
+
+        public isConnected(): boolean;
         public setProvider(provider: Web3.Provider): void;
         public currentProvider: Web3.Provider;
-        public fromWei(amount: number|BigNumber.BigNumber, unit: string): BigNumber.BigNumber;
-        public toWei(amount: number|BigNumber.BigNumber, unit: string): BigNumber.BigNumber;
-        public isAddress(address: string): boolean;
+        public reset(keepIsSyncing: boolean): void;
         public sha3(value: string, options?: Web3.Sha3Options): string;
+        public toHex(value: string|number|Object|Array<any>|BigNumber.BigNumber): string;
+        public toAscii(hexString: string): string;
+        public fromAscii(value: string, padding?: number): string;
+        public toDecimal(hexString: string): number;
+        public fromDecimal(number: number|string): string;
+        public fromWei(amount: number|string|BigNumber.BigNumber, unit: string): string|BigNumber.BigNumber;
+        public toWei(amount: number|string|BigNumber.BigNumber, unit: string): string|BigNumber.BigNumber;
+        public toBigNumber(numberOrHexString: number|string): BigNumber.BigNumber;
+        public isAddress(address: string): boolean;
     }
 
     namespace providers {
