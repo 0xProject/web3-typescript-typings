@@ -20,7 +20,8 @@ declare module 'web3' {
             };
             blockNumber: number;
             sign(address: string, message: string, callback: (err: Error, signData: string) => void): string;
-            getBlock(blockHash: string, callback: (err: Error, blockObj: any) => void): BigNumber.BigNumber;
+            getBlock(blockHashOrNumber: string|number, returnTransactionObjects?: boolean,
+                callback?: (err: Error, blockObj: Web3.Block) => void): Web3.Block;
             getBlockNumber(callback: (err: Error, blockNumber: number) => void): void;
             contract<A>(abi: Web3.ContractAbi): Web3.Contract<A>;
             getBalance(addressHexString: string,
@@ -30,7 +31,10 @@ declare module 'web3' {
             filter(value: string|Web3.FilterObject): Web3.FilterResult;
             getAccounts(callback: (err: Error, value: any) => void): string[];
             sendTransaction(txData: any, callback: (err: Error, value: any) => void): void;
-            getTransactionReceipt(txHash: string, callback: (err: Error, receipt: any) => void): void;
+            getTransaction(txHash: string, callback?: (err: Error, tx: Web3.Transaction) => void): Web3.Transaction;
+            getTransactionFromBlock(hashStringOrNumber: string|number, indexNumber: number, callback?: (err: Error, tx: Web3.Transaction) => void): Web3.Transaction;
+            getTransactionReceipt(txHash: string, callback?: (err: Error, receipt: Web3.TransactionReceipt) => void): Web3.TransactionReceipt;
+            getTransactionCount(address: string, defaultBlock?: number|string, callback?: (err: Error, count: number) => void): number;
         };
 
         public setProvider(provider: Web3.Provider): void;
@@ -106,6 +110,65 @@ declare module 'web3' {
 
         interface Sha3Options {
             encoding: string;
+        }
+
+        interface Block {
+            number: number|null;
+            hash: string|null;
+            parentHash: string;
+            nonce: string|null;
+            sha3Uncles: string;
+            logsBloom: string|null;
+            transactionRoot: string;
+            stateRoot: string;
+            miner: string;
+            difficulty: BigNumber.BigNumber;
+            totalDifficulty: BigNumber.BigNumber;
+            extraData: string;
+            size: number;
+            gasLimit: number;
+            gasUsed: number;
+            timestamp: number;
+            transactions: Transaction[]|string[];
+            uncles: string[];
+        }
+
+        interface Transaction {
+            hash: string;
+            nonce: number;
+            blockHash: string|null;
+            blockNumber: number|null;
+            transactionIndex: number|null;
+            from: string;
+            to: string|null;
+            value: BigNumber.BigNumber;
+            gasPrice: BigNumber.BigNumber;
+            gas: number;
+            input: string;
+        }
+
+        interface TransactionReceipt {
+            blockHash: string;
+            blockNumber: number;
+            transactionHash: string;
+            transactionIndex: string;
+            from: string;
+            to: string|null;
+            cumulativeGasUsed: string;
+            gasUsed: number;
+            contractAddress: string|null;
+            logs: LogEntry[];
+        }
+
+        interface LogEntry {
+            logIndex: number|null;
+            transactionIndex: number;
+            transactionHash: string;
+            blockHash: string|null;
+            blockNumber: number|null;
+            address: string;
+            data: string;
+            topics: string[];
         }
     }
     /* tslint:disable */
