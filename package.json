@@ -2,8 +2,8 @@
   "name": "web3-typescript-typings",
   "version": "0.3.1",
   "description": "Typescript type definitions for web3",
-  "main": "index.d.js",
-  "types": "index.d.js",
+  "main": "web3/index.d.js",
+  "types": "web3/index.d.js",
   "scripts": {
     "lint": "tslint index.d.ts"
   },
