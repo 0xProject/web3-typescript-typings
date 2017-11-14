@@ -103,6 +103,7 @@ declare module 'web3' {
 
         interface Contract<A extends ContractInstance> {
             at(address: string): A;
+            new(...args: any[]): A;
         }
 
         interface FilterObject {
@@ -306,7 +307,7 @@ declare module 'web3' {
             extraData: string;
             size: number;
             gasLimit: number;
-            gasUser: number;
+            gasUsed: number;
             timestamp: number;
             uncles: string[];
         }
