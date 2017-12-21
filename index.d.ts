@@ -120,12 +120,16 @@ declare module 'web3' {
             args: A;
         }
 
+        /**
+         * @deprecated Use {@link DecodedLogEntry<A>}
+         */
         interface DecodedLogEntryEvent<A> extends DecodedLogEntry<A> {
-            removed: boolean;
         }
 
+        /**
+         * @deprecated Use {@link LogEntry}
+         */
         interface LogEntryEvent extends LogEntry {
-            removed: boolean;
         }
 
         interface FilterResult {
