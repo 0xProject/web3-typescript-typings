@@ -134,7 +134,7 @@ declare module 'web3' {
         }
 
         interface FilterResult {
-            get(callback: () => void): void;
+            get(callback: (err: Error, result: any) => void): void;
             watch(callback: (err: Error, result: LogEntryEvent) => void): void;
             stopWatching(callback?: () => void): void;
         }
